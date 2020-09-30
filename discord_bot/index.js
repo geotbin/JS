@@ -19,4 +19,4 @@ bot.on('message', function(message){
 })
 
 // Discord Bot App Token (README.md)
-bot.login('NTUxMzg2OTAxMTE0NzgxNzEy.D1wW8g.RO41rUclwm87WTO0kPtA28uMlt8');
+bot.login('TOKEN_HERE');
