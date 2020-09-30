@@ -1,0 +1,22 @@
+{
+  "name": "async-readfile",
+  "version": "1.0.0",
+  "description": "test appels asynchrones et promesses",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "node",
+    "asynchrone"
+  ],
+  "author": "JC Routier",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.1-security"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab-etu.fil.univ-lille1.fr:javascript/async-readfile.git"
+  }
+}

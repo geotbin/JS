@@ -1,0 +1,14 @@
+body {
+    text-align : center;
+    background-color: rgb(64,64,64);
+    color : white;
+}
+
+input {
+    text-align : right;
+    width : 80px;
+}
+
+img {
+  padding : 40px;
+}

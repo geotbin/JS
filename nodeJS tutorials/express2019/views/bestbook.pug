@@ -1,0 +1,7 @@
+extends booklayout
+
+block bookcontent
+  h2= title
+  p Welcome to #{title} page
+  p Best book is #[strong #{book.title}] by #[strong #{book.author}]
+  +createCover(`${book.cover}`)

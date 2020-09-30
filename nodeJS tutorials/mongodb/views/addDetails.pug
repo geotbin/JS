@@ -1,0 +1,15 @@
+extends layout
+
+append headblock
+  script(src="/javascripts/addDetails.js")
+
+block content
+  h1 add details to book #{book._id}
+  h2.title= ` ${book.title}`
+  .author #{book.author.toUpperCase()}
+  div
+    input#language(placeholder="language")
+    input#pages(placeholder="pages")
+    input#series(placeholder="series")
+    button#addButton(data-bookid= book._id) add details
+  #result

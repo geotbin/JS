@@ -1,0 +1,172 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+var debug = require('debug')('express:server');
+var http = require('http');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+
+var server = http.createServer(app);
+const ioController = require('../controllers/ioController.js');      // on récupère le contrôleur
+const io = require('socket.io')(server);
+io.on('connection', socket => ioController.registerSocket(socket)); // la gestion d'une nouvelle connexion est déléguée au contrôleur
+
+
+/**
+ * Tab of connected clients (sockets)
+ */
+var clients = [];
+
+/**
+ * when a user connect to the webpage
+ */
+io.on('connection', function(socket){
+
+  var nb_clients = clients.length;
+
+  /**
+   * when 2 sockets are already connected to the game, we need to force-disconnect all the futures sockets connections
+   */
+  if(nb_clients >= 2){
+    console.log(`${socket.id} forced to disconnect; already 2 players in the game`);
+    var data = {data: 'already 2 players; you have been disconnect from the game'};
+
+    // emit an info message to the current socket and disconnect
+    socket.emit('infos', data);
+    socket.disconnect();
+
+  } else {
+
+    // add current socket to clients array
+    clients.push(socket.id);
+    console.log(`Nouveau joueur ${socket.id}`);
+
+    // if this socket disconnects, we need to delete the socket in the clients tab
+    socket.on('disconnect', function(){
+      console.log(`${socket.id} left the game`);
+      var index = clients.indexOf(socket.id);
+      if(index > -1){
+        clients.splice(index, 1);
+      }
+
+      /**
+       * send a message to all the connected sockets to notice that the current socket is disconnected
+       * after that, notice to all sockets that no enough players are connected to play
+       *   */
+      io.emit('error_disconnect');
+      data = {data: `${clients.length} PLAYER(S) CONNECTED : GAME NOT READY`};
+      io.emit('infos', data);
+    });
+    
+    /**
+     * If they are enough players to play (2), send a READY signal to all the connected socket.
+     * the ready signal is essential to start the game.
+     * Reset also the current scoretab
+     */
+    if(clients.length == 2){
+      data = {data: "2 PLAYERS CONNECTED : READY"};
+      io.emit('ready');
+      io.emit('reset_score');
+    } else {
+      // no enough players, send info to all sockets
+      data = {data: `${clients.length} PLAYER(S) CONNECTED : GAME NOT READY`};
+    }
+    io.emit('infos', data);
+    
+    /**
+     * Every socket connection, the "FIRST" status will be given to the first socket in the Clients tab
+     * First status permitt to the socket to start the ball.
+     */
+    if(clients.length > 0){
+      var firstClientId = clients[0];
+      io.to(firstClientId).emit('first');
+    }
+  }
+});
+
+
+
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}

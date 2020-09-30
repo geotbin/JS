@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  - var users = ['Tim Oleon', 'Timo Léon', 'Ti Moléon'];
+
+  h1= title
+  p Welcome to #{title}
+  p here comes the user list...
+  ul
+    - for (let i = 0 ; i < users.length ; i++)
+      li user-#{i} = #{users[i]}

@@ -1,0 +1,11 @@
+.rating img {
+  width : 24px;
+}
+
+.rating span {
+  font-size : 20px;
+  padding-left : 4px;
+  color : rgb(80,80,80);
+  position : relative;
+  bottom : 5px;
+}

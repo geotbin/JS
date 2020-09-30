@@ -1,0 +1,17 @@
+extends layout
+
+
+block content
+  h1= title
+  p result of request : #[code= request]
+  p book has id #[code= book._id]
+  h2.title= ` ${book.title}`
+  .author #{book.author.toUpperCase()}
+  +createCover(`${book.cover}`)
+  if book.details
+    #details
+      p Details :
+      p language : #{book.details.language}
+      p pages : #{book.details.pages}
+      if book.details.series
+        p series : #{book.details.series}

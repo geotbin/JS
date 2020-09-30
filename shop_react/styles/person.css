@@ -1,0 +1,14 @@
+.person {
+  padding : 4px 8px;
+  margin : 10px;
+  background-color : rgb(100,100,255);
+  color : white;
+}
+
+dl {
+  margin : 3px 15px;
+}
+
+dt {
+  color : black;
+}

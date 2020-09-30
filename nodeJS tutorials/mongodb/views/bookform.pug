@@ -1,0 +1,15 @@
+extends layout
+
+
+block content
+  - var thebook
+  - if (book) { thebook = book} else { thebook =  { title : '', author : '', year : '', cover : ''} }
+  h1 Create book
+  p Provide new book data
+  div
+    input#title(placeholder="title", value= thebook.title)
+    input#author(placeholder="author", value= thebook.author)
+    input#pubyear(placeholder="year", value= thebook.year)
+    input#cover(placeholder="cover image", value= thebook.cover)
+    block bookcontrol
+  #result

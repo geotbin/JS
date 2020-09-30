@@ -1,0 +1,22 @@
+use dbbooks
+show dbs
+show collections
+db.books.find()
+db.books.insert({title : 'The Lord of the Ring', author : 'JRRT', year : 1954})
+db.books.find()
+show dbs
+show collections
+db.books.insert({ title : 'Dune',  author : 'Herbert Frank', year : 1965 })
+db.books.find().pretty()
+db.books.find({year : 1954})
+db.books.insert({ title : 'Bilbo',  author : 'Jrrt', year : 1954 })
+db.books.update({ title : 'Bilbo'}, { $set : {author : 'JRRT', year : 1937} })
+db.books.find({author : 'JRRT'})
+db.books.update({ title : 'Bilbo'}, { $set : { type : 'novel'} })
+db.books.find({author : 'JRRT'})
+db.books.deleteOne({author : 'Herbert Frank'})
+db.books.deleteMany({author : 'JRRT'})
+
+
+
+mongoimport --db dbbooks --collection books --type csv --file ./books.csv --headerline

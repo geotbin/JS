@@ -1,0 +1,79 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.example {
+  background-color: #CCCCCC;
+  margin : 10px;
+}
+
+#otherexample {
+  border : solid thin #BBBBBB;
+  margin : 10px;
+  padding : 3px;
+}
+
+.booklist {
+  border : solid 2px #404040;
+  padding : 4px;
+  font-size : 24px;
+}
+tr.book {
+  border : solid thin #404040;
+  background-color : #E0E0E0;
+}
+tr.book:hover {
+  background-color : #A0A0A0;
+}
+td.author, td.title {
+  padding : 2px 5px;
+}
+
+td.author {
+  color  : green;
+}
+
+.cover {
+  width : 200px;
+  padding  : 5px;
+  background-color: rgba(100,155,100,0.5);
+}
+
+.cover img {
+  width : 100%;
+}
+
+h2.title {
+  margin-bottom : 5px;
+}
+div.author {
+  font-style:italic;
+  color : #A0A0A0;
+  margin-left : 20px;
+}
+
+footer {
+  border-top : solid thin #BBBBBB;
+  margin-top : 10px;
+  padding : 5px;
+}
+
+#details {
+  position : absolute;
+  left : 500px;
+  top : 100px;
+  width : 400px;
+  border : solid thin #CCC;
+  background-color : rgb(32,32,32);
+  color : white;
+  padding : 10px;
+}
+
+#details .cover {
+  float : right;
+}

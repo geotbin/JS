@@ -1,0 +1,148 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../server');
+var debug = require('debug')('chat-socketio:server');
+var http = require('http');
+var md5 = require('md5');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+
+
+/**
+ * Socket IO part
+ */
+
+const io = require('socket.io')(server);
+
+var users = {};
+var messages = {};
+var history = 5;
+
+io.sockets.on('connection', function(socket){
+  io.sockets.emit('all_users', users);
+
+  var userid = false;
+  var already_connected = false;
+
+  socket.on('login', function(user){
+    if(already_connected === false){
+      var avatar = "https://ui-avatars.com/api/?name=" + user.username + "&rounded=true";
+      userid = 'id-' + md5(user.username);
+      var new_user = {
+        username: user.username,
+        avatar: avatar,
+        userid: userid
+      }
+      users[userid] = new_user;
+      socket.emit('logged', userid);
+      socket.emit('history_messages', messages);
+      io.sockets.emit('all_users', users);
+      already_connected = true;
+    }
+  })
+
+  socket.on('disconnect', function(user){
+    delete users[userid];
+    io.sockets.emit('all_users', users);
+  })
+
+  socket.on('newmsg', function(message){
+    date = new Date().toUTCString();
+    var messageid = 'msg-' + Math.random().toString(36).substr(2, 16);
+    var data = {
+      author : users[userid],
+      date : date,
+      message : message,
+      messsageid : messageid
+    }
+    messages[messageid] = data;
+    if(messages.length > history){
+      messages.shift();
+    }
+    io.sockets.emit('new_message', data)
+  })
+})
+
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}

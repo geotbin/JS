@@ -1,0 +1,29 @@
+<h3>{{viewTitle}}</h3>
+
+<form action="/admin/add" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="_id">
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" name="name" placeholder="Name" required>
+    <div class="form-group">
+        <label>Description</label>
+        <input type="text" class="form-control" name="description" placeholder="description" required>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>image</label>
+            <input type="file" class="form-control" name="image" placeholder="image" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label>Price</label>
+            <input type="text" class="form-control" name="price" placeholder="price" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label>Stock</label>
+            <input type="text" class="form-control" name="stock" placeholder="stock" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Submit</button>
+        <a class="btn btn-secondary" href="/admin/"><i class="fa fa-list-alt"></i> View</a>
+    </div>
+</form>

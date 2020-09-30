@@ -1,0 +1,11 @@
+{
+  "name": "second",
+  "version": "1.0.0",
+  "description": "second minimal node server",
+  "main": "second.js",
+  "scripts": {
+    "start": "node second.js"
+  },
+  "author": "JC",
+  "license": "ISC"
+}

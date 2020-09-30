@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Mon Compte
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button full (click)="authWithSpotify()">Se connecter avec Spotify</ion-button>
+  {{result | json }}
+  <ion-button full (click)="logOutSpotify()">Déconnexion</ion-button>
+</ion-content>

@@ -1,0 +1,9 @@
+extends booklayout
+
+
+block bookcontent
+  h1= title
+  p Welcome to #{title} page of book with id #{id}
+  h2.title= ` ${book.title}`
+  .author #{book.author.toUpperCase()}
+  +createCover(`${book.cover}`)

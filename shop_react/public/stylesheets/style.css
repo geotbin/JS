@@ -1,0 +1,148 @@
+body {
+  width :80%;
+  margin: auto auto !important;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+}
+
+a {
+  color: #00B7FF;
+}
+
+#insertReactHere {
+  border : solid thin #DDDDDD;
+  padding : 15px 10px;
+  box-shadow: 0px 0px 4px 2px rgba(220,220,220,0.3);
+}
+
+.article-basket{
+  height: 50px;
+  border-bottom: solid grey 1px;
+  margin: 5px;
+}
+
+
+
+.articleb-price{
+  right: 0;
+position: absolute;
+margin-right: 15px;
+}
+
+.header{
+  height: 100px;
+  background-color: black;
+
+}
+
+.cart-icon {
+    font-size: 3em !important;
+        margin: auto !important;
+}
+
+.core{
+      margin-top: 10px;
+}
+
+.image{
+  border: solid 2px;
+  height: 125px;
+}
+
+.basket{
+  width: 20%;
+  border: solid 1px;
+  position: fixed;
+  right: 10%;
+  height: 350px;
+  overflow-y: scroll;
+}
+
+.shop{
+  display: flex;
+}
+
+.fixed-right{
+  position: absolute;
+  right: 0;
+}
+
+.fixed-left{
+  position: absolute;
+  left: 0;
+}
+
+.article{
+width: calc(33% - 20px);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+background-color: darkgray;
+    margin-right: 20px;
+    border-radius: 5px;
+    -moz-box-shadow: 10px 10px 5px 0px #656565;
+    -webkit-box-shadow: 10px 10px 5px 0px #656565;
+    -o-box-shadow: 10px 10px 5px 0px #656565;
+    box-shadow: 10px 10px 5px 0px #656565;
+}
+
+.stock{
+  width: 25%;
+  text-align: -webkit-center;
+}
+
+
+.catalogue{
+  display: flex;
+  width: 75%;
+  height: 750px;
+  margin-right: 5%;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+
+}
+
+.desc{
+  width: 75%;
+}
+
+.desc-part{
+      display: flex;
+}
+
+.price{
+  font-size: 25px;
+  margin: auto;
+  text-decoration: underline;
+}
+
+.top-part{
+  height: max-content;
+  padding: 7px;
+}
+
+.bot-part{
+      padding: 7px;
+      display: flex;
+}
+
+.name{
+    font-size: 17px;
+}
+
+.order-part{
+  width: 20%;
+border: solid 2px;
+margin-left: 10px;
+    display: grid;
+}
+
+.desc-part{
+  height: 170px;
+width: 75%;
+border: solid 2px;
+}
+
+.trash-icon{
+  font-size: 1em !important;
+}
+

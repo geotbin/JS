@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="author" content="JC Routier"/>
+
+	</head>
+
+	<body>
+		<h1>file header, content loaded is </h1>
+
+		<div class="content" style="border:solid thin black; padding : 10px">

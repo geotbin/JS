@@ -1,0 +1,9 @@
+extends bookform
+
+append headblock
+  script(src="/javascripts/update-book.js")
+
+block bookcontrol
+  button#updatebutton(data-bookid= book._id) update
+  div
+    a(href='/books') return to book list

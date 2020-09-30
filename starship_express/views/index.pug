@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  canvas#stars(width='1000', height='400')
+  #control
+    button#nouvelleSoucoupe
+      | 1
+      img(src='./images/flyingSaucer-petit.png', alt='nouvelle soucoupe volante', width='48')
+    button#flotteSoucoupes
+      | ∞
+      img(src='./images/flyingSaucer-petit.png', alt='nouvelle soucoupe volante', width='48')
+    button#beastMode BeastMode
+    |     score  :
+    span#score  0
+  script(src='javascripts/main.js' type='module')

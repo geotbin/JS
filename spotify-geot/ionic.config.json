@@ -1,0 +1,7 @@
+{
+  "name": "spotify-geot",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

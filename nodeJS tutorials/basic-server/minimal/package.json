@@ -1,0 +1,11 @@
+{
+  "name": "zero",
+  "version": "1.0.0",
+  "description": "minmal web server",
+  "main": "minimalServer.js",
+  "scripts": {
+    "start": "node minimalServer.js"
+  },
+  "author": "JC Routier",
+  "license": "ISC"
+}

@@ -1,0 +1,27 @@
+extends layout
+
+append headblock
+  script(src="/javascripts/usebookrest.js")
+
+block content
+  h1= title
+  ul
+    li #[strong read] displays book fields
+    li #[strong update] adds a # to book title
+    li #[strong delete] removes book
+    li #[strong create] new cerates a new book with some default value
+  table.booklist
+    each book, index in books
+      tr.book
+        td.author= book.author
+        td.title= book.title
+        td= book.year
+        td
+         button.get(data-bookid= book._id)  read
+        td
+         button.put(data-bookid= book._id, data-book= book)  update
+        td
+         button.delete(data-bookid= book._id)  delete
+  button#post create new
+  #details2
+  #NB NB : page will refresh 3s after operation completes

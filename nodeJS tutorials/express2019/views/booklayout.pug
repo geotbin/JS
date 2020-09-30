@@ -1,0 +1,12 @@
+extends layout
+
+mixin createCover(imgSrc)
+  .cover
+    img(src=imgSrc)
+
+block content
+  h1 Some books
+  block bookcontent
+
+append footblock
+  p you are in #[em book zone]

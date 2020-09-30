@@ -1,0 +1,21 @@
+.book {
+  font-size : 24px;
+  background-color : rgb(245,245,245);
+  margin : 4px 0px;
+  padding : 3px;
+}
+.book span {
+  padding : 4px 10px;
+}
+
+.title {
+  transition : background-color 1s 0s;
+}
+
+button {
+  position : relative;
+  top : -5px;
+  border-radius : 4px;
+  background-color : yellow;
+  border-style : solid;
+}

@@ -1,0 +1,26 @@
+doctype html
+html(xmlns='http://www.w3.org/1999/xhtml', xml:lang='fr')
+  head
+    meta(charset='UTF-8')
+    title Pong
+    meta(name='author', content='Gautier CAVANNAC')
+    meta(name='keywords', content='animation')
+    link(rel='stylesheet', type='text/css', href='stylesheets/style.css', title='starship style')
+  body
+    canvas#field(width='800', height='600')
+    table(style='width:100%', border='1')
+      tbody
+        tr
+          th#player1 PLAYER 1 (YOU)
+          th#player2 PLAYER 2 (OPPONENT)
+        tr
+          td#player1_score 0
+          td#player2_score 0
+    hr(width='50%')
+    table(style='width:100%', border='1')
+      tbody
+        tr
+          th#console Console
+
+    script(src='scripts/theGame.js' type='module')
+    script(src='/socket.io/socket.io.js')
